@@ -1,0 +1,45 @@
+<%- include("../partials/header") %>
+
+
+<%if (errorMessage && errorMessage.length > 0) {%>
+
+<div class="ui red message">
+    <%= errorMessage%>
+
+    <%}%>
+<%if (successMessage && successMessage.length > 0) {%>
+    <div class="ui green message" style="text-align: center;">
+        <%= successMessage%>
+    </div>
+    <%}%>
+	
+<div class="banner">
+<!--Flash message-->
+<div class="header">
+   <h1>Find your home<br> away from home</h1>
+      <a  href="/listings/new" class="ui button" style="background-color:#c39000 ; color: white; font-size: .8em">Add new listing</a>
+</div>
+</div>
+  <div class="main-container">
+  <!--listing cards-->
+     <main class="listing-cards">
+	    <section class="main-card">
+        <% homeaways.forEach(homeaway =>{ %>
+    <div class="listing-card">
+        <div class="card-image">
+            <a href="/listings/<%= homeaway._id %>"><img src="<%= homeaway.image %>" alt="room"></a>
+        </div>
+        <div class="card-content">
+            <a class="card-header" href="/listings/<%= homeaway._id %>"> <%= homeaway.title %> </a>
+        </div>
+        <div class="extra"> <span> <i class="fas fa-bed rooms"></i>
+                <%= homeaway.rooms %> bedroom/s </span>
+            <span class="right floated price">$<%= homeaway.price %>/night</span>
+        </div>
+    </div>
+    <% }) %>
+    </section>
+    </main>
+</div>
+
+<%- include ("../partials/footer") %>

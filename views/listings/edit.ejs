@@ -1,0 +1,42 @@
+<%- include("../partials/header") %>
+<style>
+    .nav-header {
+        display: none;
+    }
+</style>
+
+<div class="form-container">
+    <div class="exit">
+        <a href="/listings/<%= homeaway._id%>/"><i class="fas fa-times"></i> close</a>
+    </div>
+    <h1 class="form-heading">Edit - "<%= homeaway.title%>"</h1>
+    <form class="ui form create-form" action="/listings/<%= homeaway._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+        <div class="field">
+            <label>Listing title</label>
+            <input type="text" name="homeaway[title]" value="<%= homeaway.title%>">
+        </div>
+        <div class="field">
+            <label>Image</label>
+            <input type="file" id="image" accept="image/*" name="image" value="<%= homeaway.image %>">
+        </div>
+        <div class="field">
+            <label>Description</label>
+            <textarea name="homeaway[description]"><%= homeaway.description%></textarea>
+        </div>
+        <div class="field">
+            <label>Address</label>
+            <input name="location" name="location" id="location" placeholder="location" value="<%=homeaway.location%>">
+        </div>
+        <div class="two fields">
+            <div class="field">
+                <label>Rooms</label>
+                <input type="Number" name="homeaway[rooms]" value="<%= homeaway.rooms%>">
+            </div>
+            <div class="field">
+                <label>Price</label>
+                <input type="Number" name="homeaway[price]" value="<%= homeaway.price%>">
+            </div>
+        </div>
+        <button class="ui button small-btn" type="submit">Submit</button>
+    </form>
+</div>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Homeaway</title>
+    <!--Semantic UI CDN-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!--CSS link-->
+    <link href="/stylesheets/app.css" rel="stylesheet" type="text/css">
+    <!--Font Awesome-->
+    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js" integrity="sha384-3Nqiqht3ZZEO8FKj7GR1upiI385J92VwWNLj+FqHxtLYxd9l+WYpeqSOrLh0T12c" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <!--Navbar -->
+    <div class="nav-header">
+        <nav class="mb-1 navbar navbar-expand-lg navbar-light info-color">
+            <a class="navbar-brand" id=logo href="/listings">homeaway</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+                <ul class="navbar-nav ml-auto">
+                    <% if (!currentUser) {%>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/login">Log in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline btn-lg" style="background-color:#c39000; color: white;" href="/signup">Sign Up</a>
+                    </li>
+                    <%}%>
+			<% if (currentUser) {%>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user"></i> <%= currentUser.username%></a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+                            <a class="dropdown-item waves-effect waves-light" href="/listings/new">Add new listing</a>
+                            <a class="dropdown-item waves-effect waves-light" href="/logout">Log out</a>
+                        </div>
+                    </li>
+                    <%}%>
+        </ul>
+      </div>
+    </nav>
+	</div>
+    <!--/.Navbar -->
+
+
+ 

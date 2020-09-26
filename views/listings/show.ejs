@@ -1,0 +1,121 @@
+<%- include("../partials/header") %>
+
+<div class="split-container">
+    <!--mobile image display-->
+    <div class="listing-image mobile">
+        <img src="<%= homeaway.image %>">
+    </div>
+    <div class="location-container">
+        <!--map web -->
+        <div id="map"></div>
+        <div style="margin-top: 6em;">
+			<p><i class="fas fa-map-marker-alt"></i> <i><%= homeaway.location %></i></p>
+        </div>
+    </div>
+    <div class="second-container">
+        <div class="listing-title">
+            <h1><%= homeaway.title %></h1>
+            <%// User Association Review, edit and delete%>
+            <div class="listing-controllers">
+                <%if (currentUser && homeaway.author.id.equals(currentUser._id)) {%>
+                <div>
+                    <div class="dropdown">
+                        <button type="button" id="dropdownMenuButton" data-toggle="dropdown" aria- haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/listings/<%= homeaway._id%>/edit" class="edit">Edit</a>
+                            <form action="/listings/<%= homeaway._id%>?_method=DELETE" method="POST">
+                                <button class="dropdowm-item" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <%}%>
+        </div>
+      </div>
+	 
+<!--Desktop image display-->	
+	<div class="listing-image desktop">
+		<img src="<%= homeaway.image %>">
+            </div>
+
+            <div class="user">
+                <p>posted by <span class="posted-by"><%= homeaway.author.username %></span></p>
+            </div>
+            <div class="listing-info">
+                <div class="accommodation">
+                    <p>Rooms</p>
+                    <i class="fas fa-bed" style="width:24px; height:24px"></i>
+                    <p><%= homeaway.rooms %> /bedrooms</p>
+                </div>
+                <div class="price">
+                    <p>Price</p>
+                    <p><span class="price-per-night">$ <%= homeaway.price%></span> night</p>
+                </div>
+            </div>
+            <div class="listing-description">
+                <p><%= homeaway.description %></p>
+            </div>
+
+            <!--Review -->
+            <div class="ui comments review">
+                <a href="/listings/<%= homeaway._id %>/comments/new" id="add-review"><i class="plus icon"></i>Add Review</a>
+                <% homeaway.comments.forEach(comment => { %>
+                <div class="comment">
+                    <div class="avatar">
+                        <div class="username-initial"><%=comment.author.username[0]%></div>
+                    </div>
+                    <div class="content">
+                        <a class="author"><%= comment.author.username %></a>
+                        <div class="text"><%= comment.text %></div>
+                        <%if (currentUser && comment.author.id.equals(currentUser._id)) {%>
+                        <div class="comment-controllers">
+                            <div>
+                                <a class="edit" href="/listings/<%= homeaway._id%>/comments/<%=comment._id%>/edit"><i class="far fa-edit"></i></a>
+                            </div>
+                            <div>
+                                <form action="/listings/<%= homeaway._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST" class="delete">
+                                    <button type="submit" class="delete"><i class="far fa-trash-alt"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+	
+	<!--GOOGLEMAP SCRIPT-->
+<script>
+  function initMap() {
+    const lat = <%= homeaway.lat %>;
+    const lng = <%= homeaway.lng %>;
+    const center = {lat:lat, lng:lng };
+    const map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 8,
+        center: center,
+        scrollwheel: false
+    });
+    const contentString = `
+      <strong><%= homeaway.title %><br/>
+      <%= homeaway.location %></strong>
+    `
+    const infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+    const marker = new google.maps.Marker({
+        position: center,
+        map: map
+    });
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+  }
+</script>
+<!--GOOGLE API KEY-->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCT7XZ7CEZFnhxrRyspRXIeTEwhUOaQvNk&callback=initMap"
+  type="text/javascript"></script>
+	
+<%- include("../partials/footer") %>	

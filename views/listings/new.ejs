@@ -1,0 +1,42 @@
+<%- include("../partials/header") %>
+
+
+<div class="form-container">
+    <div class="exit">
+        <a href="/listings"><i class="fas fa-times"></i> close</a>
+    </div>
+    <h1 class="form-heading">create new listing</h1>
+    <form class="ui form create-form" action="/listings" method="POST" enctype="multipart/form-data">
+        <div class="field">
+            <label for="title">Listing title</label>
+            <input type="text" name="title" placeholder="Title" id="title">
+			
+        </div>
+        <div class="field">
+            <label for="image">Image</label>
+            <input type="file" name="image" id="image" placeholder="Insert image URL" accept="image/*">
+			
+        </div>
+        <div class="field">
+            <label for="description">Description</label>
+            <textarea name="description" placeholder="Briefly describe your listing"></textarea>
+			
+        </div>
+        <div class="field">
+            <label for="location">Address</label>
+            <input name="location" name="location" id="location" placeholder="location" type="text">
+
+        </div>
+        <div class="two fields">
+            <div class="field">
+                <label for="rooms">Rooms</label>
+                <input placeholder="Number of Rooms" type="Number" name="rooms">
+            </div>
+            <div class="field">
+                <label for="price">Price</label>
+                <input placeholder="Price per night" type="Number" name="price">
+            </div>
+        </div>
+        <button class="ui button small-btn" type="submit">Submit</button>
+    </form>
+</div>

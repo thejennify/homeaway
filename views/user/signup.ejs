@@ -1,0 +1,23 @@
+<%- include("../partials/header") %>
+<div class="container">
+    <%if (errorMessage && errorMessage.length > 0) {%>
+
+    <div class="ui red message">
+        <%= errorMessage%>
+	</div>
+    <%}%>
+	
+  <div class="ui segment auth">
+    <section class="auth-sidebar-form">
+       <form action ="/signup" method="POST">
+		 <h1 style="margin-bottom: 1em;">Sign Up</h1>
+		 <label for="username">username</label>
+         <input type="text" name="username" id="username">
+		 <label for="password">password</label>
+         <input type="password" name="password" placeholder="password">
+         <button class="btn-form"type="submit">Sign up</button>
+		   <p class="switch-to-login">already have an account? <a href="/login">Log in</a></p>
+       </form>
+    </section>	
+ </div>
+</div>
