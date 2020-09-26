@@ -1,6 +1,9 @@
 # Homaway 
 
-HomeAway is a short term listing platform built with node.js using Express and MongoDB. It follows the MVC(model, view, controller) design pattern.
+HomeAway is a short term listing platform built with node.js using Express and MongoDB.
+
+## demo ##
+https://homeaway-home.herokuapp.com/listings
 
 This project aims to build a full-stack express application that performs:
 * CRUD actions following  RESTFUL  routing
