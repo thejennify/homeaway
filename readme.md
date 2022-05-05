@@ -4,7 +4,7 @@ HomeAway is a short term listing platform built with node.js using Express and M
 
 This project aims to build a full-stack express application that performs:
 * CRUD actions following  RESTFUL  routing
-* integrates third-party APIs
+* integrates third-party APIs (Google Maps API)
 * stores user-generated content in a database. 
 * User authentication
 * User authorization 
